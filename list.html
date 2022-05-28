@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>品优购 - 优质！优质！</title>
+    <title>品优购 - 秒杀！优质！</title>
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/page-list.css">
 </head>
 
-<body>
+<body style="height: 100%;">
     <!--页面顶部-->
     <div id="nav-bottom">
         <!--顶部-->
@@ -21,8 +21,8 @@
                             <li class="f-item">请
                                 <a href="login.html">登录</a>
                                 <span>
-                  <a href="register.html" class="col-red">免费注册</a>
-                </span>
+                                    <a href="register.html" class="col-red">免费注册</a>
+                                </span>
                             </li>
                         </ul>
                         <ul class="fr">
@@ -40,7 +40,8 @@
                             <li class="f-item">企业采购</li>
                             <li class="f-item space"></li>
                             <li class="f-item">关注品优购
-                                <i class="iconfont fr"></i></li>
+                                <i class="iconfont fr"></i>
+                            </li>
                             <li class="f-item space"></li>
                             <li class="f-item">客服服务
                                 <i class="iconfont fr"></i>
@@ -68,7 +69,8 @@
                             <div class="search">
                                 <form action="" class="sui-form form-inline">
                                     <div class="input-append">
-                                        <input type="text" id="autocomplete" type="text" class="input-error input-xxlarge">
+                                        <input type="text" id="autocomplete" type="text"
+                                            class="input-error input-xxlarge">
                                         <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
                                     </div>
                                 </form>
@@ -131,8 +133,8 @@
                 </a>
             </div>
             <div class="goods-list">
-                <ul class="yui3-g">
-                    <li class="yui3-u-1-5">
+                <ul class="yui3-g product">
+                    <!-- <li class="yui3-u-1-5">
                         <div class="p-img">
                             <a href="item.html"><img src="uploads/mobile.png"></a>
                         </div>
@@ -175,7 +177,7 @@
                         <div class="operate">
                             <a href="cart-add.html">立即抢购</a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="page">
@@ -297,7 +299,6 @@
                         </div>
                         <div class="yui3-u-1-6">
                             <h4>帮助中心</h4>
-                            <img src="assets/img/wx_cz.jpg">
                         </div>
                     </div>
                 </div>
@@ -393,9 +394,12 @@
                 </div>
                 <!-- 侧栏按钮 -->
                 <div class="toolbar-tabs">
-                    <div class="toolbar-tab tbar-tab-cart" data-title="购物车" data-target="cart"><i class="tab-ico"></i><em class="tab-text"></em><span class="tab-sub">0</span></div>
-                    <div class="toolbar-tab tbar-tab-follow" data-title="我的关注" data-target="follow"><i class="tab-ico"></i><em class="tab-text"></em></div>
-                    <div class="toolbar-tab tbar-tab-history" data-title="我的足迹" data-target="history"><i class="tab-ico"></i><em class="tab-text"></em></div>
+                    <div class="toolbar-tab tbar-tab-cart" data-title="购物车" data-target="cart"><i
+                            class="tab-ico"></i><em class="tab-text"></em><span class="tab-sub">0</span></div>
+                    <div class="toolbar-tab tbar-tab-follow" data-title="我的关注" data-target="follow"><i
+                            class="tab-ico"></i><em class="tab-text"></em></div>
+                    <div class="toolbar-tab tbar-tab-history" data-title="我的足迹" data-target="history"><i
+                            class="tab-ico"></i><em class="tab-text"></em></div>
                 </div>
                 <div class="toolbar-footer">
                     <div class="toolbar-tab tbar-tab-top">
@@ -410,7 +414,7 @@
     </div>
 
     <!--购物车单元格 模板-->
-    <script type="text/template" id="tbar-cart-item-template">
+    <!-- <script type="text/template" id="tbar-cart-item-template">
         <div class="tbar-cart-item">
             <div class="jtc-item-promo">
                 <em class="promo-tag promo-mz">满赠<i class="arrow"></i></em>
@@ -425,9 +429,11 @@
                 <a class="p-del" href="#">删除</a>
             </div>
         </div>
-    </script>
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/common.js"></script>
+    </script> -->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/layer/3.1.1/layer.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/list.js"></script>
 </body>
 
 </html>

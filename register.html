@@ -23,38 +23,39 @@
                     <div class="control-group">
                         <label class="control-label">用户名：</label>
                         <div class="controls">
-                            <input type="text" class="input-xfat input-xlarge" placeholder="用户名">
+                            <input type="text" class="input-xfat input-xlarge user" placeholder="用户名">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">邮箱：</label>
+                        <label class="control-label">密码：</label>
                         <div class="controls">
-                            <input type="text" class="input-xfat input-xlarge" placeholder="邮箱">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">登录密码：</label>
-                        <div class="controls">
-                            <input type="password" class="input-xfat input-xlarge" placeholder="设置登录密码">
+                            <input type="password" class="input-xfat input-xlarge pwd" placeholder="设置登录密码">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">确认密码：</label>
                         <div class="controls">
-                            <input type="password" class="input-xfat input-xlarge" placeholder="再次确认密码">
+                            <input type="password" class="input-xfat input-xlarge pwd2" placeholder="再次确认密码">
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label">昵称：</label>
+                        <div class="controls">
+                            <input type="text" class="input-xfat input-xlarge nick" placeholder="用户昵称">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <span class="control-label">&nbsp;</span>
                         <label class="controls">
-              <input name="m1" type="checkbox" checked>
+              <input name="m1" type="checkbox" class="deal">
               <span>同意协议并注册《品优购用户协议》</span>
             </label>
                     </div>
                     <div class="control-group">
                         <span class="control-label"></span>
                         <div class="controls btn-reg">
-                            <a class="sui-btn btn-block btn-xlarge btn-danger" href="login.html">完成注册</a>
+                            <a class="sui-btn btn-block btn-xlarge btn-danger" href="#none">完成注册</a>
                         </div>
                     </div>
                 </form>
@@ -80,6 +81,10 @@
             <div class="beian">京ICP备08001421号京公网安备110108007702</div>
         </div>
     </div>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/layer/3.1.1/layer.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/register.js"></script>
 </body>
 
 </html>

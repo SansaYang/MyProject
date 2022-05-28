@@ -60,6 +60,20 @@ span.loginname {
 .sui-nav.nav-tabs.tab-wraped>li {
     width: 50%;
 }
+.input-prepend b{
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+    margin-left: 8px;    
+}
+.input-prepend i{
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    color: red;
+    margin-left: 8px;    
+}
 
 .sui-nav.nav-tabs.tab-wraped>li>a {
     padding: 0;
