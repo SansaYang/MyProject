@@ -41,6 +41,7 @@ img {
 
 .sui-form {
     margin-top: 15px;
+    position: relative;
 }
 
 span.loginname {
@@ -215,6 +216,42 @@ h3 .go {
     *zoom: 1;
     *float: left;
 }
+.sui-form > div.warn{
+    height: 26px;
+    border: 1px solid #ffb4a8;
+    margin-top: -16px;
+    margin-bottom: 6px;
+    padding-left: 10px;
+    background-color: #fef2f2;
+    display: none;
+}
+.sui-form > div.warn i{
+    float: left;
+    font-size: 12px;
+    line-height: 26px;
+    margin-left: 5px;
+    color: #6c6c6c;
+}
+.controls .warn{
+    display: block;
+    margin-left: 5px;
+    color: red;
+    opacity: 0.7;
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url('../fonts/iconfont.ttf') format('truetype');
+}
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    color: orange;
+    font-style: normal;
+    float: left;
+    line-height: 26px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
 #submit {
     padding: 5px 80px;

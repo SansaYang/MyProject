@@ -33,11 +33,248 @@ img:hover {
 }
 
 .Recommend {
-    margin: 10px 0;
-    height: 165px;
-    background-color: #eaeaea;
+    /* margin: 10px 0; */
+    height: 260px;
+    /* background-color: #eaeaea; */
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 1;
 }
 
+.Recommend .count {
+    width: 17.5%;
+    height: 260px;
+    display: inline-block;
+    background: #da1a17;
+    background-position: center center;
+}
+
+.clock {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+}
+
+.clock .time {
+    padding-top: 15px;
+}
+
+.clock h3 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.clock .time img {
+    width: 60px;
+    height: 60px;
+}
+
+.clock .end {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.clock .end b {
+    font-size: 18px;
+}
+
+.clock .timer {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.clock .timer p {
+    display: inline-block;
+    font-weight: 600;
+}
+
+.clock .timer p b {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: #2f3430;
+    margin: 5px;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.Recommend .cycle1 {
+    width: 64.5%;
+    flex-wrap: nowrap;
+    flex-flow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.Recommend .cycle1 .imgBox{
+    width: 1000%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.cycle1 .imgBox>div{
+    float: left;
+}
+.Recommend .cycle1 a{
+    width: 194px;
+    display: inline-block;
+}
+
+@font-face {
+    font-family: 'iconfont1';
+    src: url('../fonts/iconfont1.ttf') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont1" !important;
+    font-size: 25px;
+    color: rgba(255, 255, 255, .8);
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cycle1 button {
+    width: 26px;
+    height: 35px;
+    line-height: 35px;
+    background-color: rgba(0, 0, 0, .15);
+    border: none;
+    z-index: 99;
+}
+
+.cycle1 .prev {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    border-radius: 0 50% 50% 0;
+}
+
+.cycle1 .next {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    border-radius: 50% 0 0 50%;
+}
+
+.cycle1 .prev i {
+    position: relative;
+    left: -8px;
+}
+.cycle1 .next i{
+    position: relative;
+    right: 4px;
+}
+.Recommend .product{
+    width: 100%;
+}
+.product img{
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: 30px 30px 20px;
+}
+.imgBox p{
+    padding: 0 8px 0 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #2f3430;
+}
+.product p:hover{
+    color: #cb1c39;
+}
+.product .price2{
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #e1251b;
+}
+.Recommend .cycle2 {
+    width: 18%;
+    overflow: hidden;
+    position: relative;
+    height: 260px;
+}
+
+.cycle2 .imgBox2{
+    width: 200%; 
+    position:absolute;
+    top:0;  
+    left: 0; 
+    height: 260px;
+}
+
+.cycle2 .imgBox2 a{
+    width: 216px;
+    /* margin: 5px; */
+    display: inline-block;
+    height: 260px;
+    border-right: 1px solid linear-gradient(-180deg,#fff, #eff1f6);
+    background: linear-gradient(-180deg,#fff, #eff1f6);   
+    
+}
+.cycle2 .product{
+    width: 100%;
+    display: inline-block;
+}
+.Recommend .cycle2 .imgBox2 a .kill{
+    display: block;
+    width: 90px;
+    height: 26px;
+    border: 1px solid #c81623;
+    text-align: center;
+    line-height: 28px;
+    font-size: 12px;
+    color: rgb(194, 27, 27);
+    margin: 0 auto;
+    border-radius: 14px;
+}
+
+.cycle2 .imgBox2 p{
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #2f3430;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.cycle2 .imgBox2 i{
+    display: block;
+    font-size: 12px;
+    color: #585757;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+.cycle2 .imgBox2 .product img{
+    width: 100px;
+    height: 100px;
+    margin: 30px auto 20px;
+}
+.Recommend .cycle2 .aa{
+    position: absolute;
+    width: 26px;
+    height: 15px;
+    margin: 0 auto;
+    bottom: 8px;
+    left: 50%;
+    z-index: 9999;
+}
+.Recommend .cycle2 .aa .active{
+    background-color:#da1a17;
+}
+.Recommend .cycle2 .aa i{
+    display: inline-block;
+    width: 7px;
+    height: 6px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: #999;
+}
 .Interest {
     position: relative;
     margin: -2px;
@@ -160,20 +397,7 @@ em {
     margin-top: 5px;
 }
 
-.clock {
-    background-color: #5c5251;
-    color: #fff;
-    text-align: center;
-    font-size: 18px;
-}
 
-.clock .time {
-    padding: 30px 0;
-}
-
-.clock h3 {
-    font-size: 18px;
-}
 
 .carousel-control {
     width: 17px;
@@ -618,5 +842,5 @@ ul.brand-list li {
 
 .sort {
     float: left;
-    display: block!important;
+    display: block !important;
 }

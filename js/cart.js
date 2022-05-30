@@ -6,7 +6,57 @@ class Cart {
         this.$('.cAll').addEventListener('click', this.checkAll.bind(this));
         this.$('.cAll2').addEventListener('click', this.checkAll2.bind(this));
         this.$('.delChecked').addEventListener('click', this.delCheck.bind(this));
+        this.$('.sum-btn').addEventListener('click',this.Pay.bind(this));
+        this.$('.clear').addEventListener('click',this.clearCart.bind(this));
     }
+    
+    //支付
+    async Pay(){
+        let token = localStorage.getItem('token');
+        let uId = localStorage.getItem('user_id');
+        axios.defaults.headers.common['Authorization'] = token;
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+       let res = Array.from(this.$('.goods-list1 .gbox')).find(input=>{
+            return !!input.checked;
+        })
+        if(!res) return;
+        let par7 = `id=${uId}`
+        let {status, data} = await axios.post('http://localhost:8888/cart/pay',par7);
+        // console.log(status);
+        console.log(data)
+        if(status == 200){
+            if(data.code == 401){
+                localStorage.removeItem('token');
+                localStorage.removeItem('user_id');
+                location.assign('login.html?returnUrl=cart.html');
+            }else if(data.code == 1){
+                location.assign('pay.html');
+            }
+        }
+    }
+    //清空购物车
+    async clearCart(){
+        let token = localStorage.getItem('token');
+        let uId = localStorage.getItem('user_id');
+        axios.defaults.headers.common['Authorization'] = token;
+        if(!token || !uId) location.assign('login.html?returnUrl=cart.html');
+        let para = `id=${uId}`;
+        let {status, data} = await axios.get('http://localhost:8888/cart/clear?' + para);
+        console.log(data)
+        let uls = document.querySelectorAll('.goods-list1');
+        if(status == 200){
+            if(data.code == 1){
+                uls.forEach(ul=>{
+                    layer.msg('已清空购物车');
+                    setTimeout(function(){
+                        ul.remove();
+                    },800)
+                    
+                })
+            }
+        }
+    }
+
 
     //先获取用户信息,看看有没有获取到list页面传过来的数据,传过来再获取购物车列表
     async loginCart() {
@@ -76,6 +126,7 @@ class Cart {
                     `;
                 })
                 this.$('.cList').innerHTML = html;
+                
             }
         }
     }

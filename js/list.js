@@ -75,16 +75,11 @@ class List {
     }
 
 
-
-
-
-
-
-
     lazyLoad = () => {
         let dt = document.body.scrollTop || document.documentElement.scrollTop;
         let dh = document.documentElement.clientHeight;
-        let uh = document.querySelector('.goods-list ul').offsetHeight + document.querySelector('.goods-list ul').offsetTop;
+        let ul = document.querySelector('.goods-list ul');
+        let uh = ul.offsetHeight + ul.offsetTop;
         if (uh > (dt + dh)) return;
         if (this.flag) return;
         this.flag = true;

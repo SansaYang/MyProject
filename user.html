@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>个人注册</title>
+    <title>个人信息修改</title>
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/page-account.css">
     <link rel="icon" href="favicon.ico">
@@ -17,7 +17,7 @@
         </div>
         <!--register-->
         <div class="registerArea">
-            <h3>注册新用户<span class="go">我有账号，去<a href="login.html">登陆</a></span></h3>
+            <h3>修改个人资料<span class="go">我有账号，去<a href="login.html">登陆</a></span></h3>
             <div class="info">
                 <form class="sui-form form-horizontal">
                     <div class="control-group">
@@ -28,16 +28,16 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">密码：</label>
+                        <label class="control-label">性别：</label>
                         <div class="controls pwdBox">
-                            <input type="password" class="input-xfat input-xlarge pwd" placeholder="设置登录密码">
+                            <input type="text" class="input-xfat input-xlarge gender" placeholder="设置登录密码">
                             <span class="warn"></span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">确认密码：</label>
+                        <label class="control-label">年龄：</label>
                         <div class="controls firmPwd">
-                            <input type="password" class="input-xfat input-xlarge pwd2" placeholder="再次确认密码">
+                            <input type="text" class="input-xfat input-xlarge age" placeholder="再次确认密码">
                             <span class="warn"></span>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="control-group">
                         <span class="control-label"></span>
                         <div class="controls btn-reg">
-                            <a class="sui-btn btn-block btn-xlarge btn-danger" href="#none">完成注册</a>
+                            <a class="sui-btn btn-block btn-xlarge btn-danger" href="#none">完成修改</a>
                         </div>
                     </div>
                 </form>
@@ -87,7 +87,7 @@
     <script src="lib/jquery.js"></script>
     <script src="lib/layer/3.1.1/layer.js"></script>
     <script src="js/axios.min.js"></script>
-    <script src="js/register.js"></script>
+    <script src="js/user.js"></script>
 </body>
 
 </html>
