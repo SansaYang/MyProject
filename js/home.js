@@ -8,11 +8,11 @@ class Home {
         this.carousel();
         this.flag = true;
         this.$('.cycle1').addEventListener('click', this.changeBtn.bind(this));
-        this.dw = 0;        
+        this.dw = 0;
         this.timer;
         this.lock = false;
-        this.autoData();
-        
+        this.autoEve();
+
         this.aBox = this.$('.cycle2 .aa');
         this.fadeEve();
         //登录后显示个人信息
@@ -26,6 +26,10 @@ class Home {
     fadeEve() {
         this.fade();
         this.$('.slide1').addEventListener('click', this.fadeBtn.bind(this));
+    }
+    autoEve() {
+        this.autoData();
+
     }
 
     //回到顶部
@@ -254,8 +258,10 @@ class Home {
     }
 
     //自动轮播
-    static num = 0;
-    static cw = 0;
+    static num = 1;
+    static cw = document.querySelector('.cycle2').clientWidth;
+    static imgBox2 = document.querySelector('.imgBox2');
+    static pointBox = document.querySelector('.point');
     async autoData() {
         let par5 = `current=2&pagesize=40`;
         let { status, data } = await axios.get('http://localhost:8888/goods/list?' + par5);
@@ -279,15 +285,13 @@ class Home {
             `
         })
         this.$('.cycle2 .imgBox2').innerHTML = html2;
-        Home.cw = this.$('.cycle2').clientWidth;
-        
         this.autoCopy();
-        Home.imgArr = document.querySelectorAll('.imga');
+        this.setPoint();
         this.autoPlay();
     }
-    static aI = document.querySelectorAll('.org');
-    autoCopy(){
-        let div1 = document.querySelector('.imgBox2');       
+    //复制
+    autoCopy() {
+        let div1 = document.querySelector('.imgBox2');
         const first = div1.firstElementChild.cloneNode(true);
         const last = div1.lastElementChild.cloneNode(true);
         // 1-2. 把复制好的元素插入到 div 内
@@ -296,48 +300,54 @@ class Home {
         // 1-3. 从新调整宽度
         // div 内所有子元素的数量 * 100 + '%'
         div1.style.width = div1.children.length * 100 + '%';
-
         // 1-4. 调整 div 的位置
         div1.style.left = -Home.cw * Home.num + 'px';
-        Home.aI[Home.num].style.backgroundColor = 'red';
     }
-    
-   /*  static imgArr;
-    static imgList = document.querySelector('.imgBox2'); */
+    // 设置焦点
+    setPoint() {
+        const pointNum = Home.imgBox2.children.length - 2;
+        for (let i = 0; i < pointNum; i++) {
+            const b = document.createElement('b');
+            if (i == Home.num - 1) b.classList.add('active');
+            b.dataset.point = i;
+            Home.pointBox.appendChild(b);
+        }
+        Home.pointBox.style.width = pointNum * (8 + 5) + 'px';
+        Home.pointBox.style.marginLeft = - Home.pointBox.offsetWidth / 2 + 'px';
 
-    /* static setA(){
-        if(Home.num >= Home.imgArr.length){  //Home.imgArr.length - 1
-            //则将index设置为0
-            Home.num = 0;
-            
-            //此时显示的最后一张图片，而最后一张图片和第一张是一摸一样
-            //通过CSS将最后一张切换成第一张
-            Home.imgList.style.left = -Home.cw * Home.num + 'px';
+    }
+    //运动结束
+   static moveEnd() {
+        if (Home.num == Home.imgBox2.children.length - 1) {
+            Home.num = 1;
+            Home.imgBox2.style.left = -Home.cw * Home.num + 'px';
         }
-        
-        //遍历所有a，并将它们的背景颜色设置为红色
-        for(let i = 0 ; i < Home.aI.length; i++){
-            Home.aI[i].style.backgroundColor = "";
+        if (Home.num == 0) {
+            Home.num = Home.imgBox2.children.length - 2;
+            Home.imgBox2.style.left = -Home.cw * Home.num + 'px';
         }
-        //将选中的a设置为黑色
-        Home.aI[Home.num].style.backgroundColor = "red";
-    } */    
-     /* autoPlay(){
-        setInterval(()=>{       
-            Home.num++;                 
-            if(Home.num == Home.imgArr.length) Home.num = 0;          
-            move1(Home.imgList , "left" , -Home.cw * Home.num , 20 , function(){
-                //修改导航按钮
-                Home.setA();
-            });
-            console.log(-Home.cw * Home.num)
+        //焦点配合移动
+        for (let i = 0; i < Home.pointBox.children.length; i++) {
+            Home.pointBox.children[i].classList.remove('active')
+        }
+        let i = Home.num;
+        Home.pointBox.children[i-1].classList.add('active');
+
+    }
+    //开启自动轮播
+    autoPlay() {
+        setInterval(() => {
+            Home.num++;
+            move(Home.imgBox2, { left: - Home.cw * Home.num }, Home.moveEnd)
         },2000)
-    }  */
- 
+    }
 
+
+
+    b
 
     //焦点跟随    
-   
+
     $(ele) {
         let res = document.querySelectorAll(ele);
         return res.length == 1 ? res[0] : res;
