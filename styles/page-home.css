@@ -193,7 +193,7 @@ img:hover {
 }
 .Recommend .cycle2 {
     width: 18%;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
     height: 260px;
 }
@@ -204,11 +204,12 @@ img:hover {
     top:0;  
     left: 0; 
     height: 260px;
+    /* transform: translateZ(0); */
+    /* transition: all 1s; */
 }
 
 .cycle2 .imgBox2 a{
     width: 216px;
-    /* margin: 5px; */
     display: inline-block;
     height: 260px;
     border-right: 1px solid linear-gradient(-180deg,#fff, #eff1f6);
@@ -264,10 +265,10 @@ img:hover {
     left: 50%;
     z-index: 9999;
 }
-.Recommend .cycle2 .aa .active{
+.Recommend .cycle2 .aa i.active{
     background-color:#da1a17;
 }
-.Recommend .cycle2 .aa i{
+.Recommend .cycle2 .aa .org{
     display: inline-block;
     width: 7px;
     height: 6px;

@@ -26,6 +26,6 @@ function move(ele, options, fn = function () {}) {
       } else {
         ele.style[type] = current + distance + 'px'
       }
-    }, 5)
+    }, 10)
   }
 }

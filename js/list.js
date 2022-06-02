@@ -12,12 +12,12 @@ class List {
         let { status, data } = await axios.get('http://localhost:8888/goods/list?current=' + page);
         if (status != 200 || data.code != 1) throw new Error('数据获取失败');
         let html = '';
-
         data.list.forEach(v => {
             html += `
                 <li class="yui3-u-1-5" data-id="${v.goods_id}">
                     <div class="p-img">
-                        <a href="item.html"><img src="${v.img_big_logo}"></a>
+                        <a href="item.html?gid=${v.goods_id}"><img src="${v.img_big_logo}"></a>
+                        
                     </div>
                     <div class="attr"><em>${v.title}</em></div>
                     <div class="price"><strong><em>¥</em><i>${v.current_price}</i></strong><s>￥${v.price}</s></div>
@@ -27,8 +27,7 @@ class List {
                     </div>
                 </li>
            `
-        });
-        // console.log(html);   
+        })  
         this.$('.goods-list ul').innerHTML += html;
     }
     checkLogin({ target }) {
@@ -89,7 +88,7 @@ class List {
             this.flag = false;
         }, 400)
 
-    }
+    }   
 
     $(ele) {
         let res = document.querySelectorAll(ele);

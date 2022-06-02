@@ -624,8 +624,37 @@ i.icon-tb-wangfill {
     width: 410px;
     height: 410px;
     border: 1px solid #DFDFDF;
+    position: relative;
 }
 
+.spec-preview .zz{
+    width: 274px;
+    height: 274px;
+    background-color: yellow;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.zoom .big{
+    width: 530px;
+    height: 530px;
+    position: absolute;
+    top: 234px;
+    left: 574px;
+    z-index: 99;
+    overflow: hidden;
+    display: none;
+}
+.preview-wrap .zoom .big .bigImg{
+    width: 800px;
+    height: 800px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+}
 .spec-scroll {
     clear: both;
     overflow: hidden;

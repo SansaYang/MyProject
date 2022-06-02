@@ -3,23 +3,24 @@ class Home {
         this.tar = new Date('2022/6/1 16:00:00');
         this.countDown();
         this.timer = setInterval(this.countDown, 1000);
+
         this.current = 1;
         this.carousel();
         this.flag = true;
         this.$('.cycle1').addEventListener('click', this.changeBtn.bind(this));
-        this.dw = 0;
+        this.dw = 0;        
+        this.timer;
+        this.lock = false;
         this.autoData();
-        this.cw = 0;
-        this.index = 1;
-        this.lock = true;
-        // this.autoPlay();
+        
         this.aBox = this.$('.cycle2 .aa');
-        this.Point();
         this.fadeEve();
         //登录后显示个人信息
         this.userInfo();
         //退出登录
         this.$('.logBox .logout').addEventListener('click', this.loginOut.bind(this));
+        this.backTop();
+        this.carNum();
     }
 
     fadeEve() {
@@ -27,6 +28,32 @@ class Home {
         this.$('.slide1').addEventListener('click', this.fadeBtn.bind(this));
     }
 
+    //回到顶部
+    backTop() {
+        this.$('.tbar-tab-top').onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+    }
+
+    //获取购物车商品数量
+    async carNum() {
+        let uId = localStorage.getItem('user_id');
+        let { status, data } = await axios.get('http://localhost:8888/cart/list?id=' + uId);
+        if (status == 200) {
+            if (data.code == 401) {
+                location.assign('login.html?returnUrl=home.html');
+                return;
+            }
+            if (data.code == 1) {
+                // console.log(data.cart.length)
+                this.$('.tab-sub').innerHTML = data.cart.length;
+                this.$('.shopnum').innerHTML = data.cart.length;
+            }
+        }
+    }
     //登录后显示个人信息
     async userInfo() {
         let token = localStorage.getItem('token');
@@ -66,7 +93,6 @@ class Home {
     static index = 0;
     fade() {
         let divs = this.$('.carFa > .item');
-        // console.log(this.index)
         setInterval(() => {
             Home.lastIndex = Home.index;
             Home.index++;
@@ -228,6 +254,8 @@ class Home {
     }
 
     //自动轮播
+    static num = 0;
+    static cw = 0;
     async autoData() {
         let par5 = `current=2&pagesize=40`;
         let { status, data } = await axios.get('http://localhost:8888/goods/list?' + par5);
@@ -240,7 +268,7 @@ class Home {
         let html2 = '';
         list3.forEach(ele => {
             html2 += `
-                <a href="list.html">
+                <a href="list.html" class="imga">
                     <li class="yui3-u-5-24 product">
                         <img src="${ele.img_big_logo}">
                         <i>品优购品牌秒杀</i>
@@ -251,60 +279,63 @@ class Home {
             `
         })
         this.$('.cycle2 .imgBox2').innerHTML = html2;
+        Home.cw = this.$('.cycle2').clientWidth;
+        
         this.autoCopy();
+        Home.imgArr = document.querySelectorAll('.imga');
         this.autoPlay();
-        // this.Point();
     }
-
-    //数据克隆
-    autoCopy() {
-        this.cw = this.$('.cycle2').clientWidth;
-        let div1 = this.$('.imgBox2');
-        const first = this.$('.imgBox2').firstElementChild.cloneNode(true);
-        const last = this.$('.imgBox2').lastElementChild.cloneNode(true);
+    static aI = document.querySelectorAll('.org');
+    autoCopy(){
+        let div1 = document.querySelector('.imgBox2');       
+        const first = div1.firstElementChild.cloneNode(true);
+        const last = div1.lastElementChild.cloneNode(true);
         // 1-2. 把复制好的元素插入到 div 内
         div1.appendChild(first);
-        div1.insertBefore(last, this.$('.imgBox2').firstElementChild);
+        div1.insertBefore(last, div1.firstElementChild);
         // 1-3. 从新调整宽度
         // div 内所有子元素的数量 * 100 + '%'
         div1.style.width = div1.children.length * 100 + '%';
 
         // 1-4. 调整 div 的位置
-        div1.style.left = -this.cw * this.index + 'px';
+        div1.style.left = -Home.cw * Home.num + 'px';
+        Home.aI[Home.num].style.backgroundColor = 'red';
     }
-    autoPlay() {
-        setInterval(() => {
-            let div2 = this.$('.imgBox2');
-            if (this.index == div2.children.length - 1) {
-                this.index = 1;
-                div2.style.left = -this.cw * this.index + 'px';
-            }
-            if (!this.lock) return;
-            this.lock = false;
-            this.index++;
-
-            move(this.$('.imgBox2'), { left: -this.cw * this.index });
-            // div2.style.left = -this.cw * this.index + 'px';
-            // console.log(this.index)
-            this.lock = true;
-            this.Point(this.index);
-
-
-        }, 2000);
-
+    static imgArr;
+    static imgList = document.querySelector('.imgBox2');
+    static setA(){
+        if(Home.num >= Home.imgArr.length){  //Home.imgArr.length - 1
+            //则将index设置为0
+            Home.num = 0;
+            
+            //此时显示的最后一张图片，而最后一张图片和第一张是一摸一样
+            //通过CSS将最后一张切换成第一张
+            Home.imgList.style.left = -Home.cw * Home.num + 'px';
+        }
+        
+        //遍历所有a，并将它们的背景颜色设置为红色
+        for(let i = 0 ; i < Home.aI.length; i++){
+            Home.aI[i].style.backgroundColor = "";
+        }
+        //将选中的a设置为黑色
+        Home.aI[Home.num+1].style.backgroundColor = "red";
     }
+
+     autoPlay(){
+        setInterval(()=>{       
+            Home.num++;                 
+            if(Home.num == Home.imgArr.length) Home.num = 0;          
+            move1(Home.imgList , "left" , -Home.cw * Home.num , 20 , function(){
+                //修改导航按钮
+                Home.setA();
+            });
+            console.log(-Home.cw * Home.num)
+        },2000)
+    } 
+  
 
     //焦点跟随    
-    Point(index) {
-        const num = this.$('.aa').children;
-        Array.from(num).forEach((v, k) => {
-            v.className = '';
-            // console.log(this.index)
-            if (k == index - 2) {
-                v.className = 'active';
-            }
-        })
-    }
+   
     $(ele) {
         let res = document.querySelectorAll(ele);
         return res.length == 1 ? res[0] : res;
