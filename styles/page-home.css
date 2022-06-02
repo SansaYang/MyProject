@@ -193,7 +193,7 @@ img:hover {
 }
 .Recommend .cycle2 {
     width: 18%;
-    /* overflow: hidden; */
+    overflow: hidden;
     position: relative;
     height: 260px;
 }

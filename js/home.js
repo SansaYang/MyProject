@@ -301,9 +301,11 @@ class Home {
         div1.style.left = -Home.cw * Home.num + 'px';
         Home.aI[Home.num].style.backgroundColor = 'red';
     }
-    static imgArr;
-    static imgList = document.querySelector('.imgBox2');
-    static setA(){
+    
+   /*  static imgArr;
+    static imgList = document.querySelector('.imgBox2'); */
+
+    /* static setA(){
         if(Home.num >= Home.imgArr.length){  //Home.imgArr.length - 1
             //则将index设置为0
             Home.num = 0;
@@ -318,10 +320,9 @@ class Home {
             Home.aI[i].style.backgroundColor = "";
         }
         //将选中的a设置为黑色
-        Home.aI[Home.num+1].style.backgroundColor = "red";
-    }
-
-     autoPlay(){
+        Home.aI[Home.num].style.backgroundColor = "red";
+    } */    
+     /* autoPlay(){
         setInterval(()=>{       
             Home.num++;                 
             if(Home.num == Home.imgArr.length) Home.num = 0;          
@@ -331,8 +332,9 @@ class Home {
             });
             console.log(-Home.cw * Home.num)
         },2000)
-    } 
-  
+    }  */
+ 
+
 
     //焦点跟随    
    
