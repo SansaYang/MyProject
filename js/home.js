@@ -1,4 +1,5 @@
 class Home {
+
     constructor() {
         this.tar = new Date('2022/6/1 16:00:00');
         this.countDown();
@@ -21,6 +22,7 @@ class Home {
         this.$('.logBox .logout').addEventListener('click', this.loginOut.bind(this));
         this.backTop();
         this.carNum();
+        
     }
 
     fadeEve() {
@@ -29,7 +31,6 @@ class Home {
     }
     autoEve() {
         this.autoData();
-
     }
 
     //回到顶部
@@ -65,7 +66,6 @@ class Home {
         axios.defaults.headers.common['Authorization'] = token;
         if (!token || !uId) return;
         let { status, data } = await axios.get('http://localhost:8888/users/info?id=' + uId);
-        console.log(data);
         if (status == 200 && data.code == 1) {
             this.$('.loge1').style.display = 'none';
             this.$('.loge2 .loge3').innerHTML = data.info.username;
@@ -259,7 +259,7 @@ class Home {
 
     //自动轮播
     static num = 1;
-    static cw = document.querySelector('.cycle2').clientWidth;
+    static cw = document.querySelector('.cycle2').offsetWidth;
     static imgBox2 = document.querySelector('.imgBox2');
     static pointBox = document.querySelector('.point');
     async autoData() {
@@ -285,9 +285,9 @@ class Home {
             `
         })
         this.$('.cycle2 .imgBox2').innerHTML = html2;
-        this.autoCopy();
-        this.setPoint();
+        this.autoCopy();        
         this.autoPlay();
+        this.setPoint();
     }
     //复制
     autoCopy() {
@@ -317,36 +317,33 @@ class Home {
 
     }
     //运动结束
-   static moveEnd() {
+   static moveEnd1() {
         if (Home.num == Home.imgBox2.children.length - 1) {
             Home.num = 1;
             Home.imgBox2.style.left = -Home.cw * Home.num + 'px';
-        }
-        if (Home.num == 0) {
+        }/* else if (Home.num == 0) {
             Home.num = Home.imgBox2.children.length - 2;
+            
             Home.imgBox2.style.left = -Home.cw * Home.num + 'px';
-        }
+        } */
         //焦点配合移动
         for (let i = 0; i < Home.pointBox.children.length; i++) {
-            Home.pointBox.children[i].classList.remove('active')
+            Home.pointBox.children[i].classList.remove('active');
         }
-        let i = Home.num;
-        Home.pointBox.children[i-1].classList.add('active');
-
+        Home.pointBox.children[Home.num-1].classList.toggle('active');
     }
     //开启自动轮播
     autoPlay() {
         setInterval(() => {
             Home.num++;
-            move(Home.imgBox2, { left: - Home.cw * Home.num }, Home.moveEnd)
-        },2000)
-    }
-
-
-
-    b
-
-    //焦点跟随    
+            $('.imgBox2').stop(true,true).animate({
+                left:'-=216px'
+            }, function(){
+                Home.moveEnd1();
+            })                              
+            
+        },2000)        
+    } 
 
     $(ele) {
         let res = document.querySelectorAll(ele);

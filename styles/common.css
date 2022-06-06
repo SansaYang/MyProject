@@ -15456,13 +15456,13 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     display: none;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'icomoon';
     src: url('../fonts/icomoon.eot?5oyl41');
     src: url('../fonts/icomoon.eot?5oyl41#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?5oyl41') format('truetype'), url('../fonts/icomoon.woff?5oyl41') format('woff'), url('../fonts/icomoon.svg?5oyl41#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 .arr,
 .ctrl3 {

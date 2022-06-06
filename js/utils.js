@@ -15,7 +15,7 @@ function move(ele, options, fn = function () {}) {
       }
       let distance = (target - current) / 10
       distance = distance > 0 ? Math.ceil(distance) : Math.floor(distance)
-      if (current === target) {
+      if (current == target) {
         clearInterval(timer)
         count--
         if (!count) fn()
@@ -26,6 +26,6 @@ function move(ele, options, fn = function () {}) {
       } else {
         ele.style[type] = current + distance + 'px'
       }
-    }, 10)
+    }, 20)
   }
 }
